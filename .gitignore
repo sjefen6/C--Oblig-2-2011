@@ -27,3 +27,9 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+
+#Fra http://stackoverflow.com/questions/507343/using-git-with-visual-studio
+*.vcproj.*.user
+*.ncb
+*.aps
+*.suo
