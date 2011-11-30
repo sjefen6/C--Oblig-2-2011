@@ -29,7 +29,7 @@ namespace CityDefender
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            //canon.draw(e.Graphics);
+            canon.draw(e.Graphics);
             shield.draw(e.Graphics);
         }
     }

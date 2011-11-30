@@ -20,5 +20,10 @@ namespace CityDefender
         {
             Invalidate();
         }
+
+        private void rightButton_Click(object sender, EventArgs e)
+        {
+            gamePanel1.canon.moveRight();
+        }
     }
 }

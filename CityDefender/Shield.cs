@@ -9,17 +9,19 @@ namespace CityDefender
     class Shield : GameObject
     {
         protected static bool shield;
+        private int hitPoints;
 
         public Shield(GamePanel _MyPanel)
-        { 
-            
+        {
+            hitPoints = 3;
         }
 
-        public double ShieldRadius
+        public int HitPoints
         {
-            get { return shieldRadius; }
-            set { shieldRadius = value; }
+            set { hitPoints = value; }
+            get { return hitPoints; }
         }
+
         public bool ShieldActive
         {
             get { return shield; }
@@ -38,8 +40,7 @@ namespace CityDefender
 
         public override void draw(Graphics g)
         {
-            //g.DrawEllipse(Pens.Black, 100f, 100f, 100f, 100f);
-            g.DrawEllipse(Pens.Black, 0f, 600f * 2f / 3f, 600f, 600f);
+            g.DrawEllipse(Pens.Black, -100f, 400f, 800f, 800f);
         }
     }
 }

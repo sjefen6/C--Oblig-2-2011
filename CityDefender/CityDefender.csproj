@@ -81,6 +81,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shield.cs" />
     <Compile Include="Shot.cs" />
+    <EmbeddedResource Include="CityDefender.resx">
+      <DependentUpon>CityDefender.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GamePanel.resx">
       <DependentUpon>GamePanel.cs</DependentUpon>
     </EmbeddedResource>

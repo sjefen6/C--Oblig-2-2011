@@ -8,16 +8,16 @@ namespace CityDefender
 {
     abstract class GameObject
     {
-        protected double xCoord, yCoord, shieldRadius;
+        protected float xCoord, yCoord;
         protected GamePanel _MyPanel;
 
-        public double XCoord
+        public float XCoord
         {
             get { return xCoord; }
             set { xCoord = value; }
         }
 
-        public double YCoord
+        public float YCoord
         {
             get { return yCoord; }
             set { yCoord = value; }
