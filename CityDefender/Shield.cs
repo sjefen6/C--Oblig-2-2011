@@ -15,7 +15,7 @@ namespace CityDefender
         {
             hitPoints = 3;
         }
-
+        
         public int HitPoints
         {
             set { hitPoints = value; }
