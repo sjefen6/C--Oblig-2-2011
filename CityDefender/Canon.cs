@@ -63,7 +63,7 @@ namespace CityDefender
 
         public override void draw(Graphics g)
         {
-            g.DrawImage(Image.FromFile(@"C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitHubClone\C--Oblig-2-2011\CityDefender\arrow.png"), xCoord, yCoord, 30, 40);
+            g.DrawImage(Image.FromFile(@"C:\Users\sjefen6\skole\datatek2\Programmering i C#\CityDefender_git\C--Oblig-2-2011\CityDefender\arrow.png"), xCoord, yCoord, 30, 40);
         }
     }
 }

@@ -130,7 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="arrow.png" />
-    <Content Include="etg.png" />
+    <EmbeddedResource Include="etg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
