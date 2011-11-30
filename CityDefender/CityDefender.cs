@@ -23,7 +23,8 @@ namespace CityDefender
 
         private void rightButton_Click(object sender, EventArgs e)
         {
-            gamePanel1.canon.moveRight();
+            gamePanel1.canonMoveRight();
+            Invalidate();
         }
     }
 }
