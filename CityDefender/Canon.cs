@@ -20,20 +20,9 @@ namespace CityDefender
             //TODO: Get from _GamePanel shield status
             shield = true;
             angle = Math.PI * 3/2;
-//            xCoord = panelSize().Width / 2;
-//            yCoord = panelSize().Height / 6;
-//            xCoord = 285f;
-//            yCoord = 360f;
 
             xCoord = (float)(300 + (400 * Math.Cos(angle))) - 15f;
             yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
-
-            //i = Image.FromFile("arrow.png");
-
-            //p[0].X = (int)xCoord; p[0].Y = (int)yCoord - 10;
-            //p[1].X = (int)xCoord - 5; p[1].Y = (int)yCoord;
-            //p[2].X = (int)xCoord + 5; p[2].Y = (int)yCoord;
-
         }
 
         private Size panelSize()
