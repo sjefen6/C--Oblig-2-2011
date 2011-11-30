@@ -12,6 +12,8 @@ namespace CityDefender
         private int houseNr, totalHouseNr, etg;
         Random r = new Random();
 
+        private int HOUSEHEIGHT = 12, HOUSEWIDTH = 34;
+
         public House(GamePanel _GamePanel, int houseNr, int totalHouseNr)
         {
             this._GamePanel = _GamePanel;
@@ -24,14 +26,16 @@ namespace CityDefender
 
         public override void draw(Graphics g)
         {
-            Image newImage = Image.FromFile("etg.png");
+            Image newImage = Image.FromFile(@"C:\Users\sjefen6\skole\datatek2\Programmering i C#\CityDefender_local\CityDefender\etg.png");
+            g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             for(int i = 0; i <= etg; i++)
             {
-                Point ulCorner = new Point(100, 100);
-                g.DrawImage(newImage, ulCorner);
+                g.DrawImage(newImage, (int) xCoord, (int)(yCoord + (HOUSEHEIGHT * (i+1))), HOUSEWIDTH, HOUSEHEIGHT);
             }
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
