@@ -14,11 +14,13 @@ namespace CityDefender
     {
         Canon canon;
         Shield shield;
+        House house;
 
         public GamePanel()
         {
             canon = new Canon(this);
             shield = new Shield(this);
+            house = new House(this, 10, 10);
 
             //this.SetStyle(ControlStyles.DoubleBuffer |
             //                ControlStyles.UserPaint |
@@ -34,6 +36,7 @@ namespace CityDefender
         {
             canon.draw(e.Graphics);
             shield.draw(e.Graphics);
+            house.draw(e.Graphics);
         }
     }
 }
