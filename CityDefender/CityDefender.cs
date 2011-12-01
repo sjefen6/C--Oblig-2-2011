@@ -16,15 +16,16 @@ namespace CityDefender
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CityDefender_KeyDown(object sender, KeyEventArgs e)
         {
-            Invalidate();
-        }
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                    gamePanel1.canonMoveRight(); gamePanel1.Invalidate(); break;
+                case Keys.Left:
+                    gamePanel1.canonMoveLeft(); gamePanel1.Invalidate(); break;
+            }
 
-        private void rightButton_Click(object sender, EventArgs e)
-        {
-            gamePanel1.canonMoveRight();
-            Invalidate();
         }
     }
 }

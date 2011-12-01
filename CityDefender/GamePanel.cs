@@ -29,8 +29,8 @@ namespace CityDefender
             //this.UpdateStyles();
         }
 
-        public void canonMoveRight()
-        {canon.moveRight();}
+        public void canonMoveRight() { canon.moveRight(); }
+        public void canonMoveLeft() { canon.moveLeft(); }
 
         protected override void OnPaint(PaintEventArgs e)
         {

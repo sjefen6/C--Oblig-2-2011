@@ -34,11 +34,17 @@ namespace CityDefender
         {
             if (shield)
             {
-                
+                if (angle > Math.PI * 4 / 3)
+                {
+                    angle = angle - Math.PI / 48;
+                    xCoord = (float)(300 + (400 * Math.Cos(angle))) - 15f;
+                    yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
+                } 
             }
             else
             {
-                xCoord--;
+                if(xCoord > 0)
+                    xCoord--;
             }
         }
 
@@ -46,12 +52,16 @@ namespace CityDefender
         {
             if (shield)
             {
-                angle = angle + Math.PI / 6;
-                xCoord = (float)(300 + (400 * Math.Cos(angle))) - 15f;
-                yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
+                if (angle < Math.PI * 5 / 3)
+                {
+                    angle = angle + Math.PI / 48;
+                    xCoord = (float)(300 + (400 * Math.Cos(angle))) - 15f;
+                    yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
+                }
             }
             else
             {
+                if (xCoord < 600)
                 xCoord++;
             }
         }
@@ -63,7 +73,7 @@ namespace CityDefender
 
         public override void draw(Graphics g)
         {
-            g.DrawImage(Image.FromFile(@"C:\Users\sjefen6\skole\datatek2\Programmering i C#\CityDefender_git\C--Oblig-2-2011\CityDefender\arrow.png"), xCoord, yCoord, 30, 40);
+            g.DrawImage(Image.FromFile(@"C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\arrow.png"), xCoord, yCoord, 30, 40);
         }
     }
 }
