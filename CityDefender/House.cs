@@ -19,7 +19,7 @@ namespace CityDefender
          */
         private static Random r = new Random((int)DateTime.Now.Ticks);
 
-        private int HOUSEHEIGHT = 10, HOUSEWIDTH = 34, HOUSESPACING = 5;
+        private int HOUSEHEIGHT = 12, HOUSEWIDTH = 30, HOUSESPACING = 5;
 
         public House(GamePanel _GamePanel, int houseNr, int totalHouseNr)
         {
