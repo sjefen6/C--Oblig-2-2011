@@ -53,6 +53,7 @@
             this.Controls.Add(this.gamePanel1);
             this.Name = "CityDefender";
             this.Text = "CityDefender";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CityDefender_FormClosing);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CityDefender_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).EndInit();
             this.ResumeLayout(false);

@@ -23,11 +23,12 @@ namespace CityDefender
 
             xCoord = (float)(300 + (400 * Math.Cos(angle))) - 15f;
             yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
+            //shieldDisabled();
         }
 
-        private Size panelSize()
+        public double Angle
         {
-            return _GamePanel.ClientRectangle.Size;
+            get { return angle; }
         }
 
         public void moveLeft()
@@ -36,15 +37,15 @@ namespace CityDefender
             {
                 if (angle > Math.PI * 4 / 3)
                 {
-                    angle = angle - Math.PI / 48;
+                    angle = angle - Math.PI / 96;
                     xCoord = (float)(300 + (400 * Math.Cos(angle))) - 15f;
                     yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
                 } 
             }
             else
             {
-                if(xCoord > 0)
-                    xCoord--;
+                if(xCoord > -15)
+                    xCoord -= 8;
             }
         }
 
@@ -54,21 +55,23 @@ namespace CityDefender
             {
                 if (angle < Math.PI * 5 / 3)
                 {
-                    angle = angle + Math.PI / 48;
+                    angle = angle + Math.PI / 96;
                     xCoord = (float)(300 + (400 * Math.Cos(angle))) - 15f;
                     yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
                 }
             }
             else
             {
-                if (xCoord < 600)
-                xCoord++;
+                if (xCoord < 585)
+                xCoord += 8;
             }
         }
 
         public void shieldDisabled()
         {
             shield = false;
+            xCoord = 285f;
+            yCoord = 498f;
         }
 
         public override void draw(Graphics g)

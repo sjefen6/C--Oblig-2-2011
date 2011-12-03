@@ -28,11 +28,6 @@ namespace CityDefender
             set { shield = value; }
         }
 
-        private Size panelSize()
-        {
-            return _MyPanel.ClientRectangle.Size;
-        }
-
         public static void disableShield()
         {
             shield = false;
