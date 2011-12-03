@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace CityDefender
 {
     public partial class CityDefender : Form
@@ -19,15 +20,12 @@ namespace CityDefender
 
         private void CityDefender_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.Right:
-                    gamePanel1.canonMoveRight(); gamePanel1.Invalidate(); break;
-                case Keys.Left:
-                    gamePanel1.canonMoveLeft(); gamePanel1.Invalidate(); break;
-                case Keys.Space:
-                    gamePanel1.fireShot(); gamePanel1.Invalidate(); break;
-            }
+            if (e.KeyCode.Equals(Keys.Right))
+                    gamePanel1.canonMoveRight();
+            if (e.KeyCode.Equals(Keys.Left))
+                    gamePanel1.canonMoveLeft();
+            if (e.KeyCode.Equals(Keys.Space))
+                    gamePanel1.fireShot();                
         }
 
         private void CityDefender_FormClosing(object sender, FormClosingEventArgs e)

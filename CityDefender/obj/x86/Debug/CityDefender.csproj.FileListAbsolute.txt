@@ -37,3 +37,13 @@ C:\Users\sjefen6\skole\datatek2\Programmering i C#\CityDefender_git\C--Oblig-2-2
 C:\Users\sjefen6\skole\datatek2\Programmering i C#\CityDefender_git\C--Oblig-2-2011\CityDefender\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Users\sjefen6\skole\datatek2\Programmering i C#\CityDefender_git\C--Oblig-2-2011\CityDefender\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\sjefen6\skole\datatek2\Programmering i C#\CityDefender_git\C--Oblig-2-2011\CityDefender\bin\Debug\etg.png
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\bin\Debug\CityDefender.exe
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\bin\Debug\CityDefender.pdb
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\obj\x86\Debug\CityDefender.CityDefender.resources
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\obj\x86\Debug\CityDefender.GamePanel.resources
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\obj\x86\Debug\CityDefender.Properties.Resources.resources
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\obj\x86\Debug\CityDefender.exe
+C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\CityDefender\obj\x86\Debug\CityDefender.pdb

@@ -39,6 +39,8 @@
             // 
             // gamePanel1
             // 
+            this.gamePanel1.activeDrawing = true;
+            this.gamePanel1.activeShots = false;
             this.gamePanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.gamePanel1.Location = new System.Drawing.Point(12, 12);
             this.gamePanel1.Name = "gamePanel1";
