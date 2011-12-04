@@ -39,7 +39,7 @@ namespace CityDefender
             rect = new Rectangle((int)xCoord, (int)yCoord, HOUSEWIDTH, HOUSEHEIGHT * etg);
         }
 
-        public Rectangle getRect()
+        public override Rectangle getRect()
         {
             return rect;
         }

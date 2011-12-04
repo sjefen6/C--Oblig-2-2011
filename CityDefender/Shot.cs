@@ -24,7 +24,7 @@ namespace CityDefender
             get { return active; }
         }
 
-        public Rectangle getRect()
+        public override Rectangle getRect()
         {
             return new Rectangle((int)xCoord, (int)yCoord, (int)xCoord + 4, (int)yCoord + 4); 
         }

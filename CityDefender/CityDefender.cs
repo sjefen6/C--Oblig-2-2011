@@ -31,6 +31,7 @@ namespace CityDefender
         {
             gamePanel1.activeShots = false;
             gamePanel1.activeDrawing = false;
+            gamePanel1.activeSpawner = false;
         }
     }
 }

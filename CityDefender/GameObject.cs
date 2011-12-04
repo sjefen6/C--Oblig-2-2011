@@ -23,6 +23,8 @@ namespace CityDefender
             set { yCoord = value; }
         }
 
+        public abstract Rectangle getRect();
+
         public abstract void draw(Graphics g);
 
     }

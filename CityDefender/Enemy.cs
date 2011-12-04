@@ -19,7 +19,7 @@ namespace CityDefender
 
             velocity = 1;
         }
-        
+
         public Enemy(float startX, float startY, double startVelocity)
         {
             XCoord = startX;
@@ -28,10 +28,17 @@ namespace CityDefender
             velocity = startVelocity;
         }
 
+        public override Rectangle getRect()
+        {
+            return new Rectangle((int) XCoord,(int) YCoord, enemyImage.Width, enemyImage.Height);
+        }
+
         public override void draw(System.Drawing.Graphics g)
         {
             YCoord += (float)velocity;
             g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
         }
+
+
     }
 }

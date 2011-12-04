@@ -37,5 +37,10 @@ namespace CityDefender
         {
             g.DrawEllipse(Pens.Black, -100f, 400f, 800f, 800f);
         }
+
+        public override Rectangle getRect()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

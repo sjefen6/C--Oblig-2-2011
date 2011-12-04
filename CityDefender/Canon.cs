@@ -90,5 +90,10 @@ namespace CityDefender
                 g.DrawLine(Pens.Black, 300f, 800f, xCoord + 15f, yCoord);
             }
         }
+
+        public override Rectangle getRect()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
