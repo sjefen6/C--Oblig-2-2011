@@ -25,6 +25,7 @@ namespace CityDefender
 
         public Boolean activeShots{ get; set; }
         public Boolean activeDrawing { get; set; }
+        public Boolean activeSpawner { get; set; }
 
         public GamePanel()
         {
@@ -36,7 +37,6 @@ namespace CityDefender
                 house.Add(new House(this, i, numberOfHouses));
             }
 
-            activeDrawing = true;
 
             this.SetStyle(ControlStyles.DoubleBuffer |
                             ControlStyles.UserPaint |
@@ -44,8 +44,21 @@ namespace CityDefender
                             true);
             this.UpdateStyles();
 
+            /*
+             * Drawer thred 
+             */
+            activeDrawing = true;
+
             Thread drawingGame = new Thread(new ThreadStart(drawing));
             drawingGame.Start();
+
+            /*
+             * Spawner thred
+             */
+            activeSpawner = true;
+
+            Thread spawner = new Thread(new ThreadStart(addEnemy));
+            spawner.Start();
         }
 
         //
@@ -110,7 +123,11 @@ namespace CityDefender
 
         public void addEnemy()
         {
-            enemies.Add(new Enemy());
+            while (activeSpawner)
+            {
+                enemies.Add(new Enemy());
+                Thread.Sleep(5000/currentLevel);
+            }
         }
 
         //
