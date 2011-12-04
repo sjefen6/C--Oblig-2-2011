@@ -38,11 +38,10 @@ namespace CityDefender
 
         public override void draw(System.Drawing.Graphics g)
         {
-            if (Active)
-            {
+
                 YCoord += (float)velocity;
                 g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
-            }
+            
         }
 
 
