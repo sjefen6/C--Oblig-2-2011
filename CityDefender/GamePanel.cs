@@ -12,13 +12,13 @@ namespace CityDefender
 {
     public partial class GamePanel : Panel
     {
-        Canon canon;
-        Shield shield;
-        List<House> house = new List<House>();
-        List<Shot> shots = new List<Shot>();
-        List<Shot> tempShot = new List<Shot>();
+        private Canon canon;
+        private Shield shield;
+        private List<House> house = new List<House>();
+        private List<Shot> shots = new List<Shot>();
+        private List<Shot> tempShot = new List<Shot>();
 
-        int numberOfHouses = 10;
+        private int numberOfHouses = 10;
 
         public Boolean activeShots{ get; set; }
         public Boolean activeDrawing { get; set; }
