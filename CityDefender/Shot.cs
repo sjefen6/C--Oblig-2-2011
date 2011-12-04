@@ -33,7 +33,7 @@ namespace CityDefender
 
                 if (xCoord < 0 || xCoord > 600 || yCoord < 0 || yCoord > 538)
                 {
-                    active = false;
+                    this.active = false;
                 }
             }
         }

@@ -21,11 +21,11 @@ namespace CityDefender
         private void CityDefender_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Right))
-                    gamePanel1.canonMoveRight();
+                gamePanel1.canonMoveRight();
             if (e.KeyCode.Equals(Keys.Left))
-                    gamePanel1.canonMoveLeft();
+                gamePanel1.canonMoveLeft();
             if (e.KeyCode.Equals(Keys.Space))
-                    gamePanel1.fireShot();                
+                gamePanel1.fireShot();                
         }
 
         private void CityDefender_FormClosing(object sender, FormClosingEventArgs e)

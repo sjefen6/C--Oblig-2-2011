@@ -16,6 +16,7 @@ namespace CityDefender
         Shield shield;
         List<House> house = new List<House>();
         List<Shot> shots = new List<Shot>();
+        List<Shot> tempShot = new List<Shot>();
 
         int numberOfHouses = 10;
 
@@ -60,6 +61,8 @@ namespace CityDefender
 
         //
         // Kontrollene for å bevege kanonen til høyre og venstre
+        // På grunn av en beskyttelse måtte vi gjøre det på denne
+        // måten.
         //
         public void canonMoveRight() { canon.moveRight(); }
         public void canonMoveLeft() { canon.moveLeft(); }
@@ -69,20 +72,23 @@ namespace CityDefender
         //
         public void moveShots()
         {
-            List<Shot> tempShot = new List<Shot>();
             while (activeShots)
             {  
                 foreach (Shot s in shots)
                 {
                     s.moveShot();
 
-                    if (!s.Active)
+                    if (s.Active == false)
                         tempShot.Add(s);
                 }
-                foreach (Shot s in tempShot)
-                    shots.Remove(s);
-
-                tempShot.Clear();
+                if (tempShot.Count > 0)
+                {
+                    foreach (Shot s in tempShot)
+                    {
+                        shots.Remove(s);
+                    }
+                    tempShot.Clear();
+                }
                 Thread.Sleep(24);
             }
         }
@@ -104,7 +110,6 @@ namespace CityDefender
         // 
         protected override void OnPaint(PaintEventArgs e)
         {
-                canon.draw(e.Graphics);
                 shield.draw(e.Graphics);
 
                 foreach (House h in house)
@@ -113,7 +118,10 @@ namespace CityDefender
                 }
 
                 foreach (Shot s in shots)
+                {
                     s.draw(e.Graphics);
+                }
+                canon.draw(e.Graphics);
         }
     }
 }
