@@ -20,6 +20,7 @@ namespace CityDefender
         private static Random r = new Random((int)DateTime.Now.Ticks);
 
         private int HOUSEHEIGHT = 12, HOUSEWIDTH = 30, HOUSESPACING = 5;
+        private Rectangle rect;
 
         public House(GamePanel _GamePanel, int houseNr, int totalHouseNr)
         {
@@ -34,6 +35,13 @@ namespace CityDefender
             //Dette er en formel for å sentrere byen. Den finner mitten av panelet, og mitten av byen, og starter med hus 1 helt til venstre.
             xCoord = (600 / 2) - ((HOUSESPACING + HOUSEWIDTH) * totalHouseNr) / 2 + (houseNr * (HOUSEWIDTH + HOUSESPACING));
             yCoord = 538;
+
+            rect = new Rectangle((int)xCoord, (int)yCoord, HOUSEWIDTH, HOUSEHEIGHT * etg);
+        }
+
+        public Rectangle getRect()
+        {
+            return rect;
         }
 
         public override void draw(Graphics g)
