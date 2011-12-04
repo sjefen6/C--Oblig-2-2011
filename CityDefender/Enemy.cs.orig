@@ -39,12 +39,19 @@ namespace CityDefender
 
         public override void draw(System.Drawing.Graphics g)
         {
+<<<<<<< HEAD
+            YCoord += (float)velocity;
+            g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
+            g.DrawRectangle(Pens.Black, getRect());
+=======
             if (Active)
             {
                 YCoord += (float)velocity;
                 g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
-                g.DrawRectangle(Pens.Black, getRect());
             }
+>>>>>>> 8c783eec6e6370f4e39fddeab550122233b3cbd3
         }
+
+
     }
 }

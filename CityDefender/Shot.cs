@@ -27,7 +27,7 @@ namespace CityDefender
 
         public override Rectangle getRect()
         {
-            return new Rectangle((int)xCoord, (int)yCoord, (int)xCoord + 4, (int)yCoord + 4); 
+            return new Rectangle((int)xCoord-2, (int)yCoord-2, 4, 4); 
         }
 
         public void moveShot()
@@ -47,7 +47,10 @@ namespace CityDefender
         public override void draw(System.Drawing.Graphics g)
         {
             if (active)
+            {
                 g.FillEllipse(Brushes.Black, xCoord - 2f, yCoord - 2f, 4f, 4f);
+                g.DrawRectangle(Pens.Black, getRect());
+            }
         }
     }
 }
