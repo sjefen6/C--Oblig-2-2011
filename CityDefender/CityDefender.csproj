@@ -68,7 +68,7 @@
     <Compile Include="CityDefender.Designer.cs">
       <DependentUpon>CityDefender.cs</DependentUpon>
     </Compile>
-    <Compile Include="Debris.cs" />
+    <Compile Include="Enemy.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GamePanel.cs">
       <SubType>Component</SubType>
@@ -132,6 +132,9 @@
   <ItemGroup>
     <None Include="Resources\arrow.png" />
     <None Include="Resources\etg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

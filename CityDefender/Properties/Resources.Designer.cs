@@ -67,6 +67,13 @@ namespace CityDefender.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap cat {
+            get {
+                object obj = ResourceManager.GetObject("cat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap etg {
             get {
                 object obj = ResourceManager.GetObject("etg", resourceCulture);

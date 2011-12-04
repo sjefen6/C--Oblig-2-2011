@@ -17,8 +17,11 @@ namespace CityDefender
         private List<House> house = new List<House>();
         private List<Shot> shots = new List<Shot>();
         private List<Shot> tempShot = new List<Shot>();
+        List<Enemy> enemies = new List<Enemy>();
 
         private int numberOfHouses = 10;
+        int currentLevel = 1;
+        int numberOfEnemies = 5;
 
         public Boolean activeShots{ get; set; }
         public Boolean activeDrawing { get; set; }
@@ -105,12 +108,22 @@ namespace CityDefender
             }
         }
 
+        public void addEnemy()
+        {
+            enemies.Add(new Enemy());
+        }
+
         //
         // Tegner panelet når et paint event blir avfyrt
         // 
         protected override void OnPaint(PaintEventArgs e)
         {
                 shield.draw(e.Graphics);
+
+                foreach (Enemy c in enemies)
+                {
+                    c.draw(e.Graphics);
+                }
 
                 foreach (House h in house)
                 {
