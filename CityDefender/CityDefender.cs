@@ -12,7 +12,6 @@ namespace CityDefender
 {
     public partial class CityDefender : Form
     {
-
         public CityDefender()
         {
             InitializeComponent();

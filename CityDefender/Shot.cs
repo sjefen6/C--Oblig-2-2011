@@ -24,6 +24,11 @@ namespace CityDefender
             get { return active; }
         }
 
+        public Rectangle getRect()
+        {
+            return new Rectangle((int)xCoord, (int)yCoord, (int)xCoord + 4, (int)yCoord + 4); 
+        }
+
         public void moveShot()
         {
             if (active)
