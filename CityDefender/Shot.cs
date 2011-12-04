@@ -22,6 +22,7 @@ namespace CityDefender
         public Boolean Active
         {
             get { return active; }
+            set { active = false; }
         }
 
         public override Rectangle getRect()

@@ -76,6 +76,7 @@ namespace CityDefender
             shield = false;
             xCoord = 285f;
             yCoord = 498f;
+            angle = Math.PI * 3 / 2;
         }
 
         public override void draw(Graphics g)

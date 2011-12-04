@@ -17,6 +17,7 @@ namespace CityDefender
         private List<House> house = new List<House>();
         private List<Shot> shots = new List<Shot>();
         private List<Shot> tempShot = new List<Shot>();
+        private List<Enemy> tempEnemies = new List<Enemy>();
         List<Enemy> enemies = new List<Enemy>();
 
         private int numberOfHouses = 10;
@@ -26,6 +27,8 @@ namespace CityDefender
         public Boolean activeShots{ get; set; }
         public Boolean activeDrawing { get; set; }
         public Boolean activeSpawner { get; set; }
+        public Boolean gameRunning { get; set; }
+        public Boolean shieldActive { get; set; }
 
         public GamePanel()
         {
@@ -56,6 +59,7 @@ namespace CityDefender
              * Spawner thred
              */
             activeSpawner = true;
+            shieldActive = true;
 
             Thread spawner = new Thread(new ThreadStart(addEnemy));
             spawner.Start();
@@ -97,13 +101,14 @@ namespace CityDefender
                     if (s.Active == false)
                         tempShot.Add(s);
                 }
+                collisions();
                 if (tempShot.Count > 0)
                 {
-                    foreach (Shot s in tempShot)
-                    {
-                        shots.Remove(s);
-                    }
                     tempShot.Clear();
+                }
+                if (tempEnemies.Count > 0)
+                {
+                    tempEnemies.Clear();
                 }
                 Thread.Sleep(24);
             }
@@ -119,6 +124,53 @@ namespace CityDefender
                 Invalidate();
                 Thread.Sleep(24);
             }
+        }
+
+        public void collisions()
+        {
+           
+                //Sjekker skudd mot fiender
+                foreach (Shot s in shots)
+                {
+                    foreach (Enemy e in enemies)
+                    {
+                       if (s.getRect().IntersectsWith(e.getRect()))
+                       {
+                           s.Active = false;
+                           e.Active = false;
+                           tempShot.Add(s);
+                           tempEnemies.Add(e);
+                       }
+                    }
+                }
+                //Sjekker fiender mot skjold, hus og bakke
+                foreach (Enemy e in enemies)
+                {
+                    if (shieldActive)
+                    {
+                        shield.HitPoints = shield.HitPoints - 1;
+                        if (shield.HitPoints == 0)
+                        {
+                            canon.shieldDisabled();
+                            shield.ShieldActive = false;
+                        }
+                    }
+                    if (!shieldActive)
+                    { 
+                        
+                    }
+                }
+
+            // Rydder opp arrayene
+                foreach (Shot s in tempShot)
+                {
+                    shots.Remove(s);
+                }
+                foreach (Enemy e in tempEnemies)
+                {
+                    enemies.Remove(e);
+                }
+            
         }
 
         public void addEnemy()
