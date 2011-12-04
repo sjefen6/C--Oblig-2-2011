@@ -37,6 +37,7 @@ namespace CityDefender
         {
             YCoord += (float)velocity;
             g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
+            g.DrawRectangle(Pens.Black, getRect());
         }
 
 
