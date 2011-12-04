@@ -45,7 +45,5 @@ namespace CityDefender
                 g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
             }
         }
-
-
     }
 }

@@ -128,7 +128,6 @@ namespace CityDefender
 
         public void collisions()
         {
-           
                 //Sjekker skudd mot fiender
                 foreach (Shot s in shots)
                 {

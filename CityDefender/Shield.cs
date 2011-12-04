@@ -35,7 +35,8 @@ namespace CityDefender
 
         public override void draw(Graphics g)
         {
-            g.DrawEllipse(Pens.Black, -100f, 400f, 800f, 800f);
+            if (shield)
+                g.DrawEllipse(Pens.Black, -100f, 400f, 800f, 800f);
         }
 
         public override Rectangle getRect()
