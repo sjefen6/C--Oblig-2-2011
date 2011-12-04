@@ -14,7 +14,7 @@ namespace CityDefender
 
         public Enemy()
         {
-            XCoord = 1.0f + r.Next(600);
+            XCoord = 1.0f + r.Next(600 - enemyImage.Width);
             YCoord = 1.0f;
 
             velocity = 1;
