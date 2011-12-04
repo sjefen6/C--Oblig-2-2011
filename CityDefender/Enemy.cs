@@ -12,10 +12,14 @@ namespace CityDefender
         private double velocity;
         private static Random r = new Random((int)DateTime.Now.Ticks);
 
+        public Boolean Active { get; set; }
+
         public Enemy()
         {
             XCoord = 1.0f + r.Next(600 - enemyImage.Width);
             YCoord = 1.0f;
+
+            Active = true;
 
             velocity = 1;
         }
@@ -35,8 +39,11 @@ namespace CityDefender
 
         public override void draw(System.Drawing.Graphics g)
         {
-            YCoord += (float)velocity;
-            g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
+            if (Active)
+            {
+                YCoord += (float)velocity;
+                g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
+            }
         }
 
 
