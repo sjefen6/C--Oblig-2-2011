@@ -49,7 +49,6 @@ namespace CityDefender
             if (active)
             {
                 g.FillEllipse(Brushes.Black, xCoord - 2f, yCoord - 2f, 4f, 4f);
-                g.DrawRectangle(Pens.Black, getRect());
             }
         }
     }

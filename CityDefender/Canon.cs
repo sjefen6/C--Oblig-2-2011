@@ -18,7 +18,6 @@ namespace CityDefender
         public Canon(GamePanel _GamePanel)
         {
             this._GamePanel = _GamePanel;
-            //TODO: Get from _GamePanel shield status
             shield = true;
             angle = Math.PI * 3/2;
 
@@ -26,8 +25,6 @@ namespace CityDefender
 
             xCoord = (float)(300 + (400 * Math.Cos(angle))) - 15f;
             yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
-
-            //shieldDisabled();
         }
 
         public double Angle
@@ -81,7 +78,6 @@ namespace CityDefender
 
         public override void draw(Graphics g)
         {
-
             if (!shield)
             {
                 g.DrawImage(newImage, xCoord, yCoord, 30, 40);

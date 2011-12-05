@@ -20,11 +20,14 @@ namespace CityDefender
         private List<Enemy> tempEnemies = new List<Enemy>();
         private List<Enemy> enemies = new List<Enemy>();
 
+        private Object lobj = new Object();
+
+
         private int numberOfHouses = 10;
         int currentLevel = 1;
         int numberOfEnemies = 5;
 
-        public Boolean activeShots{ get; set; }
+        public Boolean activeShots { get; set; }
         public Boolean activeDrawing { get; set; }
         public Boolean activeSpawner { get; set; }
         public Boolean gameRunning { get; set; }
@@ -71,12 +74,15 @@ namespace CityDefender
         //
         public void fireShot()
         {
-            shots.Add(new Shot(this, canon.XCoord, canon.YCoord, canon.Angle));
-            if (!activeShots)
+            lock (lobj)
             {
-                activeShots = true;
-                Thread movingShots = new Thread(new ThreadStart(moveShots));
-                movingShots.Start();
+                shots.Add(new Shot(this, canon.XCoord, canon.YCoord, canon.Angle));
+                if (!activeShots)
+                {
+                    activeShots = true;
+                    Thread movingShots = new Thread(new ThreadStart(moveShots));
+                    movingShots.Start();
+                }
             }
         }
 
@@ -94,15 +100,28 @@ namespace CityDefender
         public void moveShots()
         {
             while (activeShots)
-            {  
-                foreach (Shot s in shots)
+            {
+                lock (lobj)
                 {
-                    s.moveShot();
+                    foreach (Shot s in shots)
+                    {
+                        s.moveShot();
 
-                    if (s.Active == false)
-                        tempShot.Add(s);
+                        if (s.Active == false)
+                            tempShot.Add(s);
+                    }
                 }
                 collisions();
+
+                foreach (Shot s in tempShot)
+                {
+                    shots.Remove(s);
+                }
+                foreach (Enemy e in tempEnemies)
+                {
+                    enemies.Remove(e);
+                }
+
                 if (tempShot.Count > 0)
                 {
                     tempShot.Clear();
@@ -113,6 +132,7 @@ namespace CityDefender
                 }
                 Thread.Sleep(24);
             }
+
         }
 
         //
@@ -121,7 +141,7 @@ namespace CityDefender
         public void drawing()
         {
             while (activeDrawing)
-            {       
+            {
                 Invalidate();
                 Thread.Sleep(24);
             }
@@ -129,21 +149,27 @@ namespace CityDefender
 
         public void collisions()
         {
-                //Sjekker skudd mot fiender
+
+            //Sjekker skudd mot fiender
+            lock (lobj)
+            {
                 foreach (Shot s in shots)
                 {
                     foreach (Enemy e in enemies)
                     {
-                       if (s.getRect().IntersectsWith(e.getRect()))
-                       {
-                           s.Active = false;
-                           e.Active = false;
-                           tempShot.Add(s);
-                           tempEnemies.Add(e);
-                       }
+                        if (s.getRect().IntersectsWith(e.getRect()))
+                        {
+                            s.Active = false;
+                            e.Active = false;
+                            tempShot.Add(s);
+                            tempEnemies.Add(e);
+                        }
                     }
                 }
-                //Sjekker fiender mot skjold, hus og bakke
+            }
+            //Sjekker fiender mot skjold, hus og bakke
+            lock (lobj)
+            {
                 foreach (Enemy e in enemies)
                 {
                     if (shieldActive)
@@ -163,32 +189,27 @@ namespace CityDefender
                                 }
                             }
                         }
-                        
+
                     }
                     if (!shieldActive)
-                    { 
-                        
-                    }
-                }
+                    {
 
-            // Rydder opp arrayene
-                foreach (Shot s in tempShot)
-                {
-                    shots.Remove(s);
+                    }
+
                 }
-                foreach (Enemy e in tempEnemies)
-                {
-                    enemies.Remove(e);
-                }
-            
+            }
         }
 
         public void addEnemy()
         {
             while (activeSpawner)
             {
-                enemies.Add(new Enemy());
-                Thread.Sleep(5000/currentLevel);
+                lock (lobj)
+                {
+                    enemies.Add(new Enemy());
+                }
+                Thread.Sleep(5000 / currentLevel);
+
             }
         }
 
@@ -197,23 +218,38 @@ namespace CityDefender
         // 
         protected override void OnPaint(PaintEventArgs e)
         {
+            lock (lobj)
+            {
                 shield.draw(e.Graphics);
-
+            }
+            lock (lobj)
+            {
                 foreach (Enemy c in enemies)
                 {
                     c.draw(e.Graphics);
                 }
+            }
 
+            lock (lobj)
+            {
                 foreach (House h in house)
                 {
                     h.draw(e.Graphics);
                 }
+            }
 
+            lock (lobj)
+            {
                 foreach (Shot s in shots)
                 {
                     s.draw(e.Graphics);
                 }
+            }
+            lock (lobj)
+            {
                 canon.draw(e.Graphics);
+            }
         }
+
     }
 }

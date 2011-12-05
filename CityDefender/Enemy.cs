@@ -11,6 +11,7 @@ namespace CityDefender
         private Image enemyImage = global::CityDefender.Properties.Resources.cat;
         private double velocity;
         private static Random r = new Random((int)DateTime.Now.Ticks);
+        Object lobj = new Object();
 
         public Boolean Active { get; set; }
 
@@ -34,7 +35,10 @@ namespace CityDefender
 
         public override Rectangle getRect()
         {
-            return new Rectangle((int)XCoord, (int)YCoord, enemyImage.Width, enemyImage.Height);
+            lock (lobj)
+            {
+                return new Rectangle((int)XCoord, (int)YCoord, enemyImage.Width, enemyImage.Height);
+            }
         }
 
         public override void draw(System.Drawing.Graphics g)
@@ -43,7 +47,6 @@ namespace CityDefender
             {
                 YCoord += (float)velocity;
                 g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
-                g.DrawRectangle(Pens.Black, getRect());
             }
         }
     }

@@ -44,11 +44,9 @@ namespace CityDefender
         {
             if (shield)
             {
-                g.DrawEllipse(Pens.Black, -100f, 400f, 800f, 800f);
-                //g.DrawRectangle(Pens.Black, getRect());
-                foreach (Rectangle r in rects)
+                for (int i = 0; i < hitPoints; i++)
                 {
-                    g.DrawRectangle(Pens.Black, r);
+                    g.DrawEllipse(Pens.Black, -100f, 400f, 800f + 2*i, 800f + 2*i);
                 }
             }
         }
