@@ -22,12 +22,12 @@ namespace CityDefender
             return  Name + ": " + Points;
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(Score other)
         {
-            if (this.Points < obj.Points)
+            if (this.Points > other.Points)
                 return -1;
-            else if (this.Points > obj.Points)
-                return -1;
+            else if (this.Points < other.Points)
+                return 1;
             else
                 return 0;
         }
