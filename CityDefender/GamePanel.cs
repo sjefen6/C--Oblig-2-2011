@@ -91,8 +91,9 @@ namespace CityDefender
 
         // 
         // Slutter spillet, slutter tråder og sletter innholdet i alle lister.
+        // Legger også til highscore.
         //
-        public void gameOver()
+        private void gameOver()
         {
             lock (lobj)
             {
@@ -129,8 +130,9 @@ namespace CityDefender
 
         //
         // Beveger alle skuddene som er avfyrt og sletter de som er utenfor panelet
+        // Sjekker også posisjonen til alle objektene for kollisjoner
         //
-        public void moveShots()
+        private void moveShots()
         {
             while (activeShots)
             {
@@ -157,7 +159,7 @@ namespace CityDefender
         //
         // Fyrer av et paint event slik at panelet tegnes
         //
-        public void drawing()
+        private void drawing()
         {
             while (activeDrawing)
             {
@@ -169,7 +171,7 @@ namespace CityDefender
         //
         // Rydder opp i arrayene og tempArrayene
         //
-        public void cleanUp()
+        private void cleanUp()
         {
             lock (lobj)
             {
@@ -204,7 +206,10 @@ namespace CityDefender
 
         }
 
-        public void collisions()
+        /*
+         * Metode som sjekker objektene i spillet for kollisjoner
+         */
+        private void collisions()
         {
 
             //Sjekker skudd mot fiender
@@ -231,8 +236,11 @@ namespace CityDefender
                 {
                     foreach (Enemy e in enemies)
                     {
+                        //Dersom skjold aktivt
                         if (shieldActive)
                         {
+                            //Sjekker "alle" posisjonene til skjoldet for kollisjon mot
+                            //kattene. Dersom skjoldet tar 3 treff blir det ødelagt
                             foreach (Rectangle r in shield.getRects())
                             {
                                 if (r.IntersectsWith(e.getRect()))
@@ -249,6 +257,8 @@ namespace CityDefender
                                 }
                             }
                         }
+                        //Dersom skjoldet er ødelagt sjekker kattene mot husene
+                        //og bakken
                         if (!shieldActive)
                         {
                             //Ødelegger hus som blir truffet av en katt.
@@ -283,7 +293,10 @@ namespace CityDefender
             cleanUp();
         }
 
-        public void addEnemy()
+        /*
+         * Metode som spawner nye fiender, hyppighet varierer etter level.
+         */
+        private void addEnemy()
         {
             while (activeSpawner)
             {

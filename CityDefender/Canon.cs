@@ -27,19 +27,28 @@ namespace CityDefender
             yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
         }
 
+        /*
+         * returnerer vinkel
+         */
         public double Angle
         {
             get { return angle; }
         }
-
+        /*
+         * returnerer og setter om skjoldet er aktivt eller ikke
+         */
         public Boolean ActiveShield
         {
             get { return shield; }
             set { shield = value; }
         }
 
+        /*
+         * Beveger kanonen mot venstre
+         */
         public void moveLeft()
         {
+            //Beveger kanonen langs skjoldet dersom skjoldet er aktivt
             if (shield)
             {
                 if (angle > Math.PI * 4 / 3)
@@ -49,6 +58,7 @@ namespace CityDefender
                     yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
                 } 
             }
+            //Ellers beveger kanonen seg langs bakken
             else
             {
                 if(xCoord > -15)
@@ -56,8 +66,12 @@ namespace CityDefender
             }
         }
 
+        /*
+         * Beveger kanonen mot høyre
+         */
         public void moveRight()
         {
+            //Beveger kanonen langs skjoldet dersom skjoldet er aktivt
             if (shield)
             {
                 if (angle < Math.PI * 5 / 3)
@@ -67,6 +81,7 @@ namespace CityDefender
                     yCoord = (float)(800 + (400 * Math.Sin(angle))) - 40f;
                 }
             }
+            //Ellers beveger kanonen seg langs bakken
             else
             {
                 if (xCoord < 585)
@@ -74,6 +89,9 @@ namespace CityDefender
             }
         }
 
+        /*
+         * Når skjoldet går ned settes den nye posisjonen til kanonen
+         */
         public void shieldDisabled()
         {
             shield = false;
@@ -82,6 +100,9 @@ namespace CityDefender
             angle = Math.PI * 3 / 2;
         }
 
+        /*
+         * Tegner kanonen
+         */
         public override void draw(Graphics g)
         {
             if (!shield)
@@ -94,6 +115,7 @@ namespace CityDefender
             }
         }
 
+        //Denne metoden er ikke i bruk for denne klassen
         public override Rectangle getRect()
         {
             throw new NotImplementedException();

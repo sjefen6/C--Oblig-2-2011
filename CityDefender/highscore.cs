@@ -21,6 +21,9 @@ namespace CityDefender
             openScore();
         }
 
+        /*
+         * Legger til nye poeng og lagrer til fil
+         */
         public void addScore(int p, String n)
         {
             scores.Add(new Score(n, p));
@@ -28,6 +31,10 @@ namespace CityDefender
             saveScore();
         }
 
+        /*
+         *  Lagrer highscore til fil, overskriver gammel fil.
+         *  Lagres til brukerens hjemmemappe.
+         */
         private void saveScore()
         {
             StringBuilder str = new StringBuilder();
@@ -41,15 +48,16 @@ namespace CityDefender
 
             sw.WriteLine(str);
             sw.Close();
-
-            //foreach (string substr in result)
-            //    sw.WriteLine(substr);
-            //sw.WriteLine("Det er " + count + " unike ord i fila.");
-            //sw.Close();
         }
 
+        /*
+         * Åpner filen HighScores.txt og parser den, og legger verdiene til
+         * i lista med Scores. Åpnes fra brukerens hjemmemappe.
+         */
         public void openScore()
         {
+            //For å unngå dobbel highscoreliste oppdateres lista
+            //hvergang denne metoden kjøres.
             if (scores != null)
             {
                 scores.Clear();
@@ -60,11 +68,15 @@ namespace CityDefender
                 String[] s1;
                 int temp;
 
+                
                 Regex regex = new Regex("\\n");
                 Regex regex1 = new Regex(@"\W+");
 
+                //Skiller linjene fra hverandre
                 printingScore = regex.Split(tekst);
 
+                //Skiller Poeng og navn fra hverandre og 
+                //legger til i listen.
                 foreach (String s in printingScore)
                 {
                     if (s != "" && s != "\r")
@@ -75,11 +87,15 @@ namespace CityDefender
                         scores.Add(new Score(s1[0], (int)temp));
                     }
                 }
+                //Solterer listen etter høyest poengsum
                 scores.Sort();
             }
             catch (FileNotFoundException) { }
         }
 
+        /*
+         * Skriver ut top 10 på lista.
+         */ 
         public override String ToString()
         {
             string resultat = "";
