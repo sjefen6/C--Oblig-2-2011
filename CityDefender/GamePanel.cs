@@ -112,24 +112,6 @@ namespace CityDefender
                     }
                 }
                 collisions();
-
-                foreach (Shot s in tempShot)
-                {
-                    shots.Remove(s);
-                }
-                foreach (Enemy e in tempEnemies)
-                {
-                    enemies.Remove(e);
-                }
-
-                if (tempShot.Count > 0)
-                {
-                    tempShot.Clear();
-                }
-                if (tempEnemies.Count > 0)
-                {
-                    tempEnemies.Clear();
-                }
                 Thread.Sleep(24);
             }
 
@@ -147,9 +129,46 @@ namespace CityDefender
             }
         }
 
+        //
+        // Rydder opp i arrayene og tempArrayene
+        //
+        public void cleanUp()
+        {
+            lock (lobj)
+            {
+                foreach (Shot s in tempShot)
+                {
+                    shots.Remove(s);
+                }
+            }
+            lock (lobj)
+            {
+                foreach (Enemy e in tempEnemies)
+                {
+                    enemies.Remove(e);
+                }
+            }
+
+            lock (lobj)
+            {
+                if (tempShot.Count > 0)
+                {
+                    tempShot.Clear();
+                }
+            }
+
+            lock (lobj)
+            {
+                if (tempEnemies.Count > 0)
+                {
+                    tempEnemies.Clear();
+                }
+            }
+                
+        }
+
         public void collisions()
         {
-
             //Sjekker skudd mot fiender
             lock (lobj)
             {
@@ -167,6 +186,7 @@ namespace CityDefender
                     }
                 }
             }
+            cleanUp();
             //Sjekker fiender mot skjold, hus og bakke
             lock (lobj)
             {
@@ -186,6 +206,7 @@ namespace CityDefender
                                 {
                                     canon.shieldDisabled();
                                     shield.ShieldActive = false;
+                                    shieldActive = false;
                                 }
                             }
                         }
@@ -193,11 +214,27 @@ namespace CityDefender
                     }
                     if (!shieldActive)
                     {
+                        foreach (House h in house)
+                        {
+                            if (h.Active)
+                            { 
+                                if (h.getRect().IntersectsWith(e.getRect()))
+                                {
+                                    h.Active = false;
+                                    e.Active = false;
+                                }
+                            }
+                        }
+                        if (e.YCoord < 539)
+                        { 
+                            //TODO:GameOver
+                        }
 
                     }
 
                 }
             }
+            cleanUp();
         }
 
         public void addEnemy()

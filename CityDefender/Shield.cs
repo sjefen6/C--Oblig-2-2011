@@ -46,7 +46,7 @@ namespace CityDefender
             {
                 for (int i = 0; i < hitPoints; i++)
                 {
-                    g.DrawEllipse(Pens.Black, -100f, 400f, 800f + 2*i, 800f + 2*i);
+                    g.DrawEllipse(Pens.Black, -100f - i, 400f - i, 800f + 2*i, 800f + 2*i);
                 }
             }
         }
@@ -55,6 +55,7 @@ namespace CityDefender
         {
             return Rectangle.FromLTRB(-100, 400, 700, 800);          
         }
+
         public Rectangle[] getRects()
         {
             return rects;

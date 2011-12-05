@@ -22,11 +22,14 @@ namespace CityDefender
         private int HOUSEHEIGHT = 12, HOUSEWIDTH = 30, HOUSESPACING = 5;
         private Rectangle rect;
 
+        public Boolean Active { set; get; }
+
         public House(GamePanel _GamePanel, int houseNr, int totalHouseNr)
         {
             this._GamePanel = _GamePanel;
             this.houseNr = houseNr;
             this.totalHouseNr = totalHouseNr;
+            Active = true;
 
             //Minimum 2 etasjer + tilfeldig antall etg opp til 6
             etg = 3 + r.Next(6);
@@ -47,9 +50,12 @@ namespace CityDefender
         public override void draw(Graphics g)
         {
             Image newImage = global::CityDefender.Properties.Resources.etg;
-            for (int i = 0; i <= etg; i++)
+            if (Active)
             {
-                g.DrawImage(newImage, (int)xCoord, (int)yCoord - (HOUSEHEIGHT * (i + 1)), HOUSEWIDTH, HOUSEHEIGHT);
+                for (int i = 0; i <= etg; i++)
+                {
+                    g.DrawImage(newImage, (int)xCoord, (int)yCoord - (HOUSEHEIGHT * (i + 1)), HOUSEWIDTH, HOUSEHEIGHT);
+                }
             }
             
             //Debug kode...
