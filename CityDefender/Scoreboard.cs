@@ -9,6 +9,10 @@ namespace CityDefender
     class Scoreboard : GameObject
     {
         int height, width;
+        public int score
+        { get; set; }
+
+        public int level { get{ return 1 + (score/200);}}
 
         public Scoreboard(GamePanel _GamePanel)
         {
@@ -23,7 +27,8 @@ namespace CityDefender
 
         public override void draw(System.Drawing.Graphics g)
         {
-            g.DrawString("lal", new Font("Arial", 16), new SolidBrush(Color.Black), xCoord - 30, yCoord - 100);
+            g.DrawString("Score: " + score.ToString(), new Font("Arial", 16), new SolidBrush(Color.Black), 10, 10);
+            g.DrawString("Level: " + level.ToString(), new Font("Arial", 16), new SolidBrush(Color.Black), 520, 10);
         }
     }
 }
