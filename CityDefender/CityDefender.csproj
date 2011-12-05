@@ -76,6 +76,7 @@
     <Compile Include="GamePanel.Designer.cs">
       <DependentUpon>GamePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="highscore.cs" />
     <Compile Include="House.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

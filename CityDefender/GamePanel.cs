@@ -253,7 +253,7 @@ namespace CityDefender
                 {
                     enemies.Add(new Enemy());
                 }
-                Thread.Sleep(5000 / currentLevel);
+                Thread.Sleep(5000 / scoreboard.level);
 
             }
         }
