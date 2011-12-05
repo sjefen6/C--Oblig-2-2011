@@ -39,7 +39,7 @@ namespace CityDefender
             xCoord = (600 / 2) - ((HOUSESPACING + HOUSEWIDTH) * totalHouseNr) / 2 + (houseNr * (HOUSEWIDTH + HOUSESPACING));
             yCoord = 538;
 
-            rect = new Rectangle((int)xCoord, (int)yCoord, HOUSEWIDTH, HOUSEHEIGHT * etg);
+            rect = new Rectangle((int)xCoord, (int)yCoord - (HOUSEHEIGHT * (etg + 1)), HOUSEWIDTH, HOUSEHEIGHT * (etg + 1));
         }
 
         public override Rectangle getRect()
@@ -55,6 +55,7 @@ namespace CityDefender
                 for (int i = 0; i <= etg; i++)
                 {
                     g.DrawImage(newImage, (int)xCoord, (int)yCoord - (HOUSEHEIGHT * (i + 1)), HOUSEWIDTH, HOUSEHEIGHT);
+                    g.DrawRectangle(Pens.Red, getRect());
                 }
             }
             
