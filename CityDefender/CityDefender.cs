@@ -47,7 +47,7 @@ namespace CityDefender
 
         private void newGameToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            gamePanel1.startGame();
+            gamePanel1.startGame(playerName.Text);
         }
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)

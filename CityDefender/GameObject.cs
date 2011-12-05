@@ -9,7 +9,6 @@ namespace CityDefender
     abstract class GameObject
     {
         protected float xCoord, yCoord;
-        protected GamePanel _MyPanel;
 
         public float XCoord
         {

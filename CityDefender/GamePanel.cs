@@ -20,11 +20,13 @@ namespace CityDefender
         private List<Enemy> tempEnemies = new List<Enemy>();
         private List<Enemy> enemies = new List<Enemy>();
 
+        private Highscore highscore = new Highscore();
+
         private Object lobj = new Object();
         private Scoreboard scoreboard;
+        private String playerName;
 
         private int numberOfHouses = 10;
-        int currentLevel = 1;
 
         public Boolean activeShots { get; set; }
         public Boolean activeDrawing { get; set; }
@@ -47,7 +49,7 @@ namespace CityDefender
         //
         // Metode for å starte spillet.
         // 
-        public void startGame()
+        public void startGame(String n)
         {
             for (int i = 0; i < numberOfHouses; i++)
             {
@@ -58,6 +60,8 @@ namespace CityDefender
             */
             activeDrawing = true;
             shieldActive = true;
+
+            playerName = n;
 
             Thread drawingGame = new Thread(new ThreadStart(drawing));
             drawingGame.Start();
@@ -83,6 +87,7 @@ namespace CityDefender
             enemies.Clear();
             tempShot.Clear();
             tempEnemies.Clear();
+            highscore.addScore(scoreboard.score, playerName); 
         }
 
         //
@@ -131,7 +136,6 @@ namespace CityDefender
 
                     }
                 }
-                collisions();
                 Thread.Sleep(24);
             }
 
@@ -145,6 +149,7 @@ namespace CityDefender
             while (activeDrawing)
             {
                 Invalidate();
+                collisions();
                 Thread.Sleep(24);
             }
         }
