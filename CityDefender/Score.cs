@@ -17,6 +17,9 @@ namespace CityDefender
             this.Points = s;
         }
 
+        /*
+         * Skriver ut denne scoren
+         */
         public override String ToString()
         {
             return  Name + ": " + Points;

@@ -19,6 +19,9 @@ namespace CityDefender
             InitializeComponent();
         }
 
+        /*
+         * Lytter på keyevents
+         */
         private void CityDefender_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Right))
@@ -29,6 +32,9 @@ namespace CityDefender
                 gamePanel1.fireShot();                
         }
 
+        /*
+         *  Sørger for at alle trådene avslutter når spillet avsluttes
+         */
         private void CityDefender_FormClosing(object sender, FormClosingEventArgs e)
         {
             gamePanel1.activeDrawing = false;
@@ -36,28 +42,33 @@ namespace CityDefender
             gamePanel1.activeSpawner = false;
         }
 
+        // About-boxen
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("City Defender av: Lena, Daniel og Vegard");
         }
 
+        // Help-boxen
         private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Hold ut så lenge som mulig.\n\nSkjoldet har 3 liv, bygninger 1 liv."
                             + "\nDu taper dersom en katt treffer bakken.");
         }
 
+        // New Game menyvalget
         private void newGameToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             string playerName = Microsoft.VisualBasic.Interaction.InputBox("Enter Player Name", "Enter Player Name", "PlayerName", 0, 0);
             gamePanel1.startGame(playerName);
         }
 
+        // Exit menyvalget
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // High Score menyvalget
         private void highScoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             hs.openScore();
