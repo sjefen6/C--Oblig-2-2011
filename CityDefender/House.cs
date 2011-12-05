@@ -9,32 +9,27 @@ namespace CityDefender
 {
     class House : GameObject
     {
-        private GamePanel _GamePanel;
-        //Debug kode
-        //public static bool r1count = false;
-        private int houseNr, totalHouseNr, etg;
-        /*
-         * Ikke vet jeg hvorfor, men random generatoren må tydligvis være static
-         * Mins 2 timer med irritasjon før jeg oppdaget det...
-         */
-        private static Random r = new Random((int)DateTime.Now.Ticks);
-
+        //Statiske instillinger for hvordan husene skal se ut
         private int HOUSEHEIGHT = 12, HOUSEWIDTH = 30, HOUSESPACING = 5;
+        //Variabler som blir brukt
+        private int houseNr, totalHouseNr, etg;
+        private static Random r = new Random((int)DateTime.Now.Ticks);
         private Rectangle rect;
+        private Image etgImage;
 
         public Boolean Active { set; get; }
 
-        public House(GamePanel _GamePanel, int houseNr, int totalHouseNr)
+        public House(int houseNr, int totalHouseNr)
         {
-            this._GamePanel = _GamePanel;
             this.houseNr = houseNr;
             this.totalHouseNr = totalHouseNr;
             Active = true;
+            etgImage = global::CityDefender.Properties.Resources.etg;
 
-            //Minimum 2 etasjer + tilfeldig antall etg opp til 6
+            //Minimum 2 etasjer + tilfeldig antall etg opp til 6 (max 9 etg)
             etg = 3 + r.Next(6);
 
-            //Bredde 600, høyde 538, får ikke dritten til å funke så hardkoder det...
+            //Bredde 600, høyde 538, desverre hardkodet...
             //Dette er en formel for å sentrere byen. Den finner mitten av panelet, og mitten av byen, og starter med hus 1 helt til venstre.
             xCoord = (600 / 2) - ((HOUSESPACING + HOUSEWIDTH) * totalHouseNr) / 2 + (houseNr * (HOUSEWIDTH + HOUSESPACING));
             yCoord = 538;
@@ -49,22 +44,14 @@ namespace CityDefender
 
         public override void draw(Graphics g)
         {
-            Image newImage = global::CityDefender.Properties.Resources.etg;
             if (Active)
             {
+                // Vi tegner 1 og 1 etasje...
                 for (int i = 0; i <= etg; i++)
                 {
-                    g.DrawImage(newImage, (int)xCoord, (int)yCoord - (HOUSEHEIGHT * (i + 1)), HOUSEWIDTH, HOUSEHEIGHT);
-                    g.DrawRectangle(Pens.Red, getRect());
+                    g.DrawImage(etgImage, (int)xCoord, (int)yCoord - (HOUSEHEIGHT * (i + 1)), HOUSEWIDTH, HOUSEHEIGHT);
                 }
             }
-            
-            //Debug kode...
-            /*if (!r1count)
-            {
-                g.DrawString("etg: " + etg + " yCoord " + yCoord, new Font("Arial", 16), new SolidBrush(Color.Black), (int)100, (int)100);
-                r1count = true;
-            }*/
         }
     }
 }

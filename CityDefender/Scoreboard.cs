@@ -8,11 +8,14 @@ namespace CityDefender
 {
     class Scoreboard : GameObject
     {
+        // Spillerens score
         public int score
         { get; set; }
 
+        //Spillerens level, bestemmer spawnrate. er ikke helt heldig om den kommer under 1
         public int level { get{ return 1 + (score/200);}}
 
+        //Konstruktør
         public Scoreboard(GamePanel _GamePanel)
         {
             xCoord = 538;

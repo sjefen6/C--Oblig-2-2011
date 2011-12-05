@@ -8,29 +8,23 @@ namespace CityDefender
 {
     class Enemy : GameObject
     {
-        private Image enemyImage = global::CityDefender.Properties.Resources.cat;
+        private Image enemyImage;
         private double velocity;
         private static Random r = new Random((int)DateTime.Now.Ticks);
-        Object lobj = new Object();
+        //Låsobjekt
+        private Object lobj = new Object();
 
         public Boolean Active { get; set; }
 
+        //Konstruktør
         public Enemy()
         {
             XCoord = 1.0f + r.Next(600 - enemyImage.Width);
             YCoord = 1.0f;
+            velocity = 1;
 
             Active = true;
-
-            velocity = 1;
-        }
-
-        public Enemy(float startX, float startY, double startVelocity)
-        {
-            XCoord = startX;
-            YCoord = startY;
-
-            velocity = startVelocity;
+            enemyImage = global::CityDefender.Properties.Resources.cat;
         }
 
         public override Rectangle getRect()
@@ -45,6 +39,7 @@ namespace CityDefender
         {
             if (Active)
             {
+                //Beveger seg rett før den blir tegnet
                 YCoord += (float)velocity;
                 g.DrawImage(enemyImage, (int)XCoord, (int)YCoord);
             }
