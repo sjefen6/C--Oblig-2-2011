@@ -25,7 +25,6 @@ namespace CityDefender
 
         private int numberOfHouses = 10;
         int currentLevel = 1;
-        int numberOfEnemies = 5;
 
         public Boolean activeShots { get; set; }
         public Boolean activeDrawing { get; set; }
@@ -38,37 +37,24 @@ namespace CityDefender
             shield = new Shield(this);
             scoreboard = new Scoreboard(this);
 
-            for (int i = 0; i < numberOfHouses; i++)
-            {
-                house.Add(new House(this, i, numberOfHouses));
-            }
-
-
             this.SetStyle(ControlStyles.DoubleBuffer |
                             ControlStyles.UserPaint |
                             ControlStyles.AllPaintingInWmPaint,
                             true);
             this.UpdateStyles();
 
-            /*
-             * Drawer thred 
-             */
-            activeDrawing = true;
-            shieldActive = true;
-
-            Thread drawingGame = new Thread(new ThreadStart(drawing));
-            drawingGame.Start();
-
-            /*
-             * Spawner thred
-             */
-            activeSpawner = true;
-            Thread spawner = new Thread(new ThreadStart(addEnemy));
-            spawner.Start();
+            startGame();
         }
 
+        //
+        // Metode for å starte spillet.
+        // 
         public void startGame()
         {
+            for (int i = 0; i < numberOfHouses; i++)
+            {
+                house.Add(new House(this, i, numberOfHouses));
+            }
             /*
             * Drawer thred 
             */
@@ -84,17 +70,21 @@ namespace CityDefender
             activeSpawner = true;
             Thread spawner = new Thread(new ThreadStart(addEnemy));
             spawner.Start();
-        
         }
 
         // 
-        // Slutter spillet
+        // Slutter spillet, slutter tråder og sletter innholdet i alle lister.
         //
         public void gameOver()
         {
             activeSpawner = false;
             activeShots = false;
             activeDrawing = false;
+            shots.Clear();
+            house.Clear();
+            enemies.Clear();
+            tempShot.Clear();
+            tempEnemies.Clear();
         }
 
         //
