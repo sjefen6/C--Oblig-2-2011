@@ -52,7 +52,7 @@ namespace CityDefender
         {
             for (int i = 0; i < numberOfHouses; i++)
             {
-                house.Add(new House(this, i, numberOfHouses));
+                house.Add(new House(i, numberOfHouses));
             }
             /*
             * Drawer thred 
@@ -116,7 +116,7 @@ namespace CityDefender
         {
             lock (lobj)
             {
-                shots.Add(new Shot(this, canon.XCoord, canon.YCoord, canon.Angle));
+                shots.Add(new Shot(canon.XCoord, canon.YCoord, canon.Angle));
             }
         }
 
