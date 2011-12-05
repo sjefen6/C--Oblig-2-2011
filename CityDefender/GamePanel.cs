@@ -30,7 +30,6 @@ namespace CityDefender
         public Boolean activeShots { get; set; }
         public Boolean activeDrawing { get; set; }
         public Boolean activeSpawner { get; set; }
-        public Boolean gameRunning { get; set; }
         public Boolean shieldActive { get; set; }
 
         public GamePanel()
@@ -183,8 +182,6 @@ namespace CityDefender
                     {
                         if (s.getRect().IntersectsWith(e.getRect()))
                         {
-                            s.Active = false;
-                            e.Active = false;
                             tempShot.Add(s);
                             tempEnemies.Add(e);
                             scoreboard.score += 10;
@@ -205,7 +202,6 @@ namespace CityDefender
                             if (r.IntersectsWith(e.getRect()))
                             {
                                 shield.HitPoints = shield.HitPoints - 1;
-                                e.Active = false;
                                 tempEnemies.Add(e);
 
                                 if (shield.HitPoints == 0)
@@ -216,10 +212,10 @@ namespace CityDefender
                                 }
                             }
                         }
-
                     }
                     if (!shieldActive)
                     {
+                        //Ødelegger hus som blir truffet av en katt.
                         foreach (House h in house)
                         {
                             if (h.Active)
@@ -231,9 +227,15 @@ namespace CityDefender
                                 }
                             }
                         }
-                        if (e.YCoord < 539)
-                        { 
-                            //TODO:GameOver
+
+                        //GameOver dersom en katt treffer bakken.
+                        if (e.YCoord > 539)
+                        {
+                            activeSpawner = false;
+                            activeShots = false;
+                            activeDrawing = false;
+                            
+                            
                         }
 
                     }
