@@ -60,16 +60,21 @@ namespace CityDefender
             */
             activeDrawing = true;
             shieldActive = true;
+            activeShots = true;
+            activeSpawner = true;
 
             playerName = n;
 
             Thread drawingGame = new Thread(new ThreadStart(drawing));
             drawingGame.Start();
 
+            
+            Thread movingShots = new Thread(new ThreadStart(moveShots));
+            movingShots.Start();
+
             /*
              * Spawner thred
              */
-            activeSpawner = true;
             Thread spawner = new Thread(new ThreadStart(addEnemy));
             spawner.Start();
         }
@@ -98,12 +103,6 @@ namespace CityDefender
             lock (lobj)
             {
                 shots.Add(new Shot(this, canon.XCoord, canon.YCoord, canon.Angle));
-                if (!activeShots)
-                {
-                    activeShots = true;
-                    Thread movingShots = new Thread(new ThreadStart(moveShots));
-                    movingShots.Start();
-                }
             }
         }
 
@@ -136,6 +135,7 @@ namespace CityDefender
 
                     }
                 }
+                collisions();
                 Thread.Sleep(24);
             }
 
@@ -148,8 +148,7 @@ namespace CityDefender
         {
             while (activeDrawing)
             {
-                Invalidate();
-                collisions();
+                Invalidate();    
                 Thread.Sleep(24);
             }
         }

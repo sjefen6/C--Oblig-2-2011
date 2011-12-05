@@ -31,7 +31,9 @@ namespace CityDefender
 
         private void CityDefender_FormClosing(object sender, FormClosingEventArgs e)
         {
-            gamePanel1.gameOver();
+            gamePanel1.activeDrawing = false;
+            gamePanel1.activeShots = false;
+            gamePanel1.activeSpawner = false;
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -47,7 +49,8 @@ namespace CityDefender
 
         private void newGameToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            gamePanel1.startGame(playerName.Text);
+            string playerName = Microsoft.VisualBasic.Interaction.InputBox("Enter Player Name", "Enter Player Name", "PlayerName", 0, 0);
+            gamePanel1.startGame(playerName);
         }
 
         private void exitToolStripMenuItem1_Click(object sender, EventArgs e)

@@ -63,10 +63,13 @@ namespace CityDefender
 
                 foreach (String s in printingScore)
                 {
-                    s1 = regex1.Split(s);
-                    temp = Convert.ToInt16(s1[1]);
+                    if (s != "" && s != "\r")
+                    {
+                        s1 = regex1.Split(s);
+                        temp = Convert.ToInt16(s1[1]);
 
-                    scores.Add(new Score(s1[0], (int)temp));
+                        scores.Add(new Score(s1[0], (int)temp));
+                    }
                 }
                 scores.Sort();
             }
