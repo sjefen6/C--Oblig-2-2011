@@ -42,8 +42,6 @@ namespace CityDefender
                             ControlStyles.AllPaintingInWmPaint,
                             true);
             this.UpdateStyles();
-
-            startGame();
         }
 
         //

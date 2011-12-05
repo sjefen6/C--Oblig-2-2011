@@ -87,5 +87,14 @@ namespace CityDefender.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string HighScores {
+            get {
+                return ResourceManager.GetString("HighScores", resourceCulture);
+            }
+        }
     }
 }
