@@ -10,12 +10,19 @@ namespace CityDefender
     {
         protected static bool shield;
         private int hitPoints;
+        Rectangle[] rects = new Rectangle[96];
 
         public Shield(GamePanel _MyPanel)
         {
             hitPoints = 3;
+            shield = true;
+
+            for (int i = 0; i < 96; i++)
+            {
+                rects[i] = new Rectangle((int)(300 + (400 * Math.Cos(Math.PI * 2 * i / 96))), (int)(800 + (400 * Math.Sin(Math.PI * 2 * i / 96))), 20, 20);
+            }
         }
-        
+
         public int HitPoints
         {
             set { hitPoints = value; }
@@ -36,12 +43,23 @@ namespace CityDefender
         public override void draw(Graphics g)
         {
             if (shield)
+            {
                 g.DrawEllipse(Pens.Black, -100f, 400f, 800f, 800f);
+                //g.DrawRectangle(Pens.Black, getRect());
+                foreach (Rectangle r in rects)
+                {
+                    g.DrawRectangle(Pens.Black, r);
+                }
+            }
         }
 
         public override Rectangle getRect()
         {
-            throw new NotImplementedException();
+            return Rectangle.FromLTRB(-100, 400, 700, 800);          
+        }
+        public Rectangle[] getRects()
+        {
+            return rects;
         }
     }
 }

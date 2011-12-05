@@ -18,7 +18,7 @@ namespace CityDefender
         private List<Shot> shots = new List<Shot>();
         private List<Shot> tempShot = new List<Shot>();
         private List<Enemy> tempEnemies = new List<Enemy>();
-        List<Enemy> enemies = new List<Enemy>();
+        private List<Enemy> enemies = new List<Enemy>();
 
         private int numberOfHouses = 10;
         int currentLevel = 1;
@@ -51,6 +51,7 @@ namespace CityDefender
              * Drawer thred 
              */
             activeDrawing = true;
+            shieldActive = true;
 
             Thread drawingGame = new Thread(new ThreadStart(drawing));
             drawingGame.Start();
@@ -59,7 +60,7 @@ namespace CityDefender
              * Spawner thred
              */
             activeSpawner = true;
-            shieldActive = true;
+
 
             Thread spawner = new Thread(new ThreadStart(addEnemy));
             spawner.Start();
@@ -147,12 +148,22 @@ namespace CityDefender
                 {
                     if (shieldActive)
                     {
-                        shield.HitPoints = shield.HitPoints - 1;
-                        if (shield.HitPoints == 0)
+                        foreach (Rectangle r in shield.getRects())
                         {
-                            canon.shieldDisabled();
-                            shield.ShieldActive = false;
+                            if (r.IntersectsWith(e.getRect()))
+                            {
+                                shield.HitPoints = shield.HitPoints - 1;
+                                e.Active = false;
+                                tempEnemies.Add(e);
+
+                                if (shield.HitPoints == 0)
+                                {
+                                    canon.shieldDisabled();
+                                    shield.ShieldActive = false;
+                                }
+                            }
                         }
+                        
                     }
                     if (!shieldActive)
                     { 
