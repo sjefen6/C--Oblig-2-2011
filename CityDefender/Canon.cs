@@ -32,6 +32,12 @@ namespace CityDefender
             get { return angle; }
         }
 
+        public Boolean ActiveShield
+        {
+            get { return shield; }
+            set { shield = value; }
+        }
+
         public void moveLeft()
         {
             if (shield)

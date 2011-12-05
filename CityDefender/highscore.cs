@@ -50,6 +50,10 @@ namespace CityDefender
 
         public void openScore()
         {
+            if (scores != null)
+            {
+                scores.Clear();
+            }
             try
             {
                 String tekst = File.ReadAllText(homePath+"\\HighScores.txt");

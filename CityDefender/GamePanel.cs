@@ -38,7 +38,6 @@ namespace CityDefender
             canon = new Canon(this);
             shield = new Shield(this);
             scoreboard = new Scoreboard(this);
-
             this.SetStyle(ControlStyles.DoubleBuffer |
                             ControlStyles.UserPaint |
                             ControlStyles.AllPaintingInWmPaint,
@@ -63,12 +62,23 @@ namespace CityDefender
             activeShots = true;
             activeSpawner = true;
 
+            canon = new Canon(this);
+            shield = new Shield(this);
+            scoreboard = new Scoreboard(this);
+
+            scoreboard.score = 0;
+
             playerName = n;
 
+            /*
+             *  tråd for tegning av spillet                
+             */
             Thread drawingGame = new Thread(new ThreadStart(drawing));
             drawingGame.Start();
 
-            
+            /*
+             *   tråd for bevegelse av skudd
+             */
             Thread movingShots = new Thread(new ThreadStart(moveShots));
             movingShots.Start();
 
@@ -84,15 +94,18 @@ namespace CityDefender
         //
         public void gameOver()
         {
-            activeSpawner = false;
-            activeShots = false;
-            activeDrawing = false;
-            shots.Clear();
-            house.Clear();
-            enemies.Clear();
-            tempShot.Clear();
-            tempEnemies.Clear();
-            highscore.addScore(scoreboard.score, playerName); 
+            lock (lobj)
+            {
+                activeSpawner = false;
+                activeShots = false;
+                activeDrawing = false;
+                shots.Clear();
+                house.Clear();
+                enemies.Clear();
+                tempShot.Clear();
+                tempEnemies.Clear();
+                highscore.addScore(scoreboard.score, playerName);
+            }
         }
 
         //
@@ -148,7 +161,7 @@ namespace CityDefender
         {
             while (activeDrawing)
             {
-                Invalidate();    
+                Invalidate();
                 Thread.Sleep(24);
             }
         }
@@ -188,11 +201,12 @@ namespace CityDefender
                     tempEnemies.Clear();
                 }
             }
-                
+
         }
 
         public void collisions()
         {
+
             //Sjekker skudd mot fiender
             lock (lobj)
             {
@@ -213,49 +227,57 @@ namespace CityDefender
             //Sjekker fiender mot skjold, hus og bakke
             lock (lobj)
             {
-                foreach (Enemy e in enemies)
+                try
                 {
-                    if (shieldActive)
+                    foreach (Enemy e in enemies)
                     {
-                        foreach (Rectangle r in shield.getRects())
+                        if (shieldActive)
                         {
-                            if (r.IntersectsWith(e.getRect()))
+                            foreach (Rectangle r in shield.getRects())
                             {
-                                shield.HitPoints = shield.HitPoints - 1;
-                                tempEnemies.Add(e);
-
-                                if (shield.HitPoints == 0)
+                                if (r.IntersectsWith(e.getRect()))
                                 {
-                                    canon.shieldDisabled();
-                                    shield.ShieldActive = false;
-                                    shieldActive = false;
+                                    shield.HitPoints = shield.HitPoints - 1;
+                                    tempEnemies.Add(e);
+
+                                    if (shield.HitPoints == 0)
+                                    {
+                                        canon.shieldDisabled();
+                                        shield.ShieldActive = false;
+                                        shieldActive = false;
+                                    }
                                 }
                             }
                         }
-                    }
-                    if (!shieldActive)
-                    {
-                        //Ødelegger hus som blir truffet av en katt.
-                        foreach (House h in house)
+                        if (!shieldActive)
                         {
-                            if (h.Active)
-                            { 
-                                if (h.getRect().IntersectsWith(e.getRect()))
+                            //Ødelegger hus som blir truffet av en katt.
+                            foreach (House h in house)
+                            {
+                                if (h.Active)
                                 {
-                                    h.Active = false;
-                                    e.Active = false;
+                                    if (h.getRect().IntersectsWith(e.getRect()))
+                                    {
+                                        h.Active = false;
+                                        e.Active = false;
+                                    }
                                 }
                             }
-                        }
 
-                        //GameOver dersom en katt treffer bakken.
-                        if (e.YCoord > 539)
-                        {
-                            gameOver();                            
+                            //GameOver dersom en katt treffer bakken.
+                            if (e.YCoord > 539)
+                            {
+                                gameOver();
+                                MessageBox.Show("Game over");
+                            }
+
                         }
 
                     }
-
+                }
+                catch (InvalidOperationException) 
+                {
+                    //blah blah blah fuck dat excpetion
                 }
             }
             cleanUp();
