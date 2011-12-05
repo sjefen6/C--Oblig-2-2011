@@ -11,79 +11,57 @@ namespace CityDefender
 {
     class Highscore
     {
-        public bool showAddBox, showHighscore;
-        private List<Score> scores;
+        private List<Score> scores = new List<Score>();
         private String[] printingScore;
 
         public Highscore()
         {
-            //load highscore file
-            showAddBox = showHighscore = false;
+
         }
 
-        public void add(int score)
-        {
-            showAddBox = true;
-            showHighscore = false;
-            //spørr etter navn og legg til i fil
+        public void addScore(int p, String n)
+        { 
+            scores.Add(new Score(n, p));
+            scores.Sort();
+        }
+
+        private void saveScore()
+        { 
+            
         }
 
         public void openScore()
         {
             String tekst = File.ReadAllText(@"C:\Users\Daniel\Documents\Skole\HiN\Programmering i C#\Oblig6\GitClone\C--Oblig-2-2011\C--Oblig-2-2011\C--Oblig-2-2011\CityDefender\Resources\HighScores.txt");
             String[] s1;
-
-            tekst = tekst.ToLower();
+            int temp;
 
             Regex regex = new Regex("\\n");
+            Regex regex1 = new Regex(@"\W+");
 
             printingScore = regex.Split(tekst);
 
             foreach (String s in printingScore)
             { 
-                Regex regex1 = new Regex(@"\W+");
-
                 s1 = regex1.Split(s);
-                int test = Convert.ToInt32(s1[0]);
-                int test2 = Convert.ToInt32(s1[2]);
+                temp = Convert.ToInt32(s1[1]);
 
-                if (s1 != null)
-                    scores.Add(new Score(test, s1[1], test2));
+                scores.Add(new Score(s1[0], (int)temp));
             }
+            scores.Sort();
         }
 
         public override String ToString()
         {
             string resultat = "";
-            foreach (Score s in scores)
+
+            scores.Sort();
+
+            for (int i = 0; i < 10; i++ )
             {
-                resultat += s.ToString() + "\n";
+                resultat += scores[i].ToString() + "\n";
             }
             return resultat;
-        }
-
-        public void showScoreboard()
-        {
-            showAddBox = true;
-            showHighscore = false;
-        }
-
-
-        public void draw(System.Drawing.Graphics g)
-        {
-            if (showAddBox)
-            {
-                //jepp
-            }
-            else if (showHighscore)
-            {
-                //jepp
-            }
-            else
-            {
-                //nothing
-            }
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,3 +1,12 @@
-1 - Num1: 500
-2 - Num2: 342
-3 - Num3: 324
+Num1: 500
+Num2: 342
+Num3: 324
+Num4: 9
+Num5: 8
+Num6: 6000
+Num7: 6
+Num8: 5
+Num9: 4
+Num10: 3
+Num11: 2
+Num12: 1

@@ -3,25 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+
 namespace CityDefender
 {
-    class Score
+    class Score : IComparable<Score>
     {
         private String Name { get; set; }
-        private int Rank { get; set; }
-        private int Points { get; set; }
+        public int Points { get; set; }
 
-        public Score(int r, String n, int s)
+        public Score(String n, int s)
         {
-            this.Rank = r;
             this.Name = n;
             this.Points = s;
         }
 
         public override String ToString()
         {
-            return Rank + " - " + Name + ": " + Points;
-            ;
+            return  Name + ": " + Points;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (this.Points < obj.Points)
+                return -1;
+            else if (this.Points > obj.Points)
+                return -1;
+            else
+                return 0;
         }
     }
 }
