@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.eventLog1 = new System.Diagnostics.EventLog();
-            this.gamePanel1 = new GamePanel();
+            this.gamePanel1 = new CityDefender.GamePanel();
             ((System.ComponentModel.ISupportInitialize)(this.eventLog1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,9 +41,12 @@
             // 
             this.gamePanel1.activeDrawing = true;
             this.gamePanel1.activeShots = false;
+            this.gamePanel1.activeSpawner = true;
             this.gamePanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.gamePanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.gamePanel1.Location = new System.Drawing.Point(12, 12);
             this.gamePanel1.Name = "gamePanel1";
+            this.gamePanel1.shieldActive = true;
             this.gamePanel1.Size = new System.Drawing.Size(600, 538);
             this.gamePanel1.TabIndex = 0;
             // 
