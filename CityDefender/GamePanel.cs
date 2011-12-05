@@ -21,7 +21,7 @@ namespace CityDefender
         private List<Enemy> enemies = new List<Enemy>();
 
         private Object lobj = new Object();
-
+        private Scoreboard scoreboard;
 
         private int numberOfHouses = 10;
         int currentLevel = 1;
@@ -36,6 +36,7 @@ namespace CityDefender
         {
             canon = new Canon(this);
             shield = new Shield(this);
+            scoreboard = new Scoreboard(this);
 
             for (int i = 0; i < numberOfHouses; i++)
             {
@@ -135,7 +136,11 @@ namespace CityDefender
                         s.moveShot();
 
                         if (s.Active == false)
+                        {
                             tempShot.Add(s);
+                            scoreboard.score -= 2;
+                        }
+
                     }
                 }
                 collisions();
@@ -207,6 +212,7 @@ namespace CityDefender
                         {
                             tempShot.Add(s);
                             tempEnemies.Add(e);
+                            scoreboard.score += 10;
                         }
                     }
                 }
@@ -312,7 +318,10 @@ namespace CityDefender
             {
                 canon.draw(e.Graphics);
             }
+            lock (lobj)
+            {
+                scoreboard.draw(e.Graphics);
+            }
         }
-
     }
 }
