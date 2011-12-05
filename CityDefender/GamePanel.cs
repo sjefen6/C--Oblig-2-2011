@@ -62,10 +62,38 @@ namespace CityDefender
              * Spawner thred
              */
             activeSpawner = true;
-
-
             Thread spawner = new Thread(new ThreadStart(addEnemy));
             spawner.Start();
+        }
+
+        public void startGame()
+        {
+            /*
+            * Drawer thred 
+            */
+            activeDrawing = true;
+            shieldActive = true;
+
+            Thread drawingGame = new Thread(new ThreadStart(drawing));
+            drawingGame.Start();
+
+            /*
+             * Spawner thred
+             */
+            activeSpawner = true;
+            Thread spawner = new Thread(new ThreadStart(addEnemy));
+            spawner.Start();
+        
+        }
+
+        // 
+        // Slutter spillet
+        //
+        public void gameOver()
+        {
+            activeSpawner = false;
+            activeShots = false;
+            activeDrawing = false;
         }
 
         //
@@ -225,11 +253,7 @@ namespace CityDefender
                         //GameOver dersom en katt treffer bakken.
                         if (e.YCoord > 539)
                         {
-                            activeSpawner = false;
-                            activeShots = false;
-                            activeDrawing = false;
-                            
-                            
+                            gameOver();                            
                         }
 
                     }
